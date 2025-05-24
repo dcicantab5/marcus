@@ -1,0 +1,440 @@
+{
+  "simulationResults": [
+    {
+      "admissionRate": 10,
+      "avgOccupancy": 40.16,
+      "medianOccupancy": 40,
+      "p95Occupancy": 48,
+      "p99Occupancy": 51,
+      "maxOccupancy": 56,
+      "littlesLawPrediction": 35.59,
+      "percentDiff": 12.83
+    },
+    {
+      "admissionRate": 15,
+      "avgOccupancy": 60.28,
+      "medianOccupancy": 60,
+      "p95Occupancy": 70,
+      "p99Occupancy": 73,
+      "maxOccupancy": 77,
+      "littlesLawPrediction": 53.39,
+      "percentDiff": 12.91
+    },
+    {
+      "admissionRate": 20,
+      "avgOccupancy": 80.88,
+      "medianOccupancy": 81,
+      "p95Occupancy": 92,
+      "p99Occupancy": 95,
+      "maxOccupancy": 105,
+      "littlesLawPrediction": 71.19,
+      "percentDiff": 13.62
+    },
+    {
+      "admissionRate": 25,
+      "avgOccupancy": 99.77,
+      "medianOccupancy": 100,
+      "p95Occupancy": 112,
+      "p99Occupancy": 118,
+      "maxOccupancy": 126,
+      "littlesLawPrediction": 88.98,
+      "percentDiff": 12.12
+    },
+    {
+      "admissionRate": 30,
+      "avgOccupancy": 120.49,
+      "medianOccupancy": 120,
+      "p95Occupancy": 134,
+      "p99Occupancy": 139,
+      "maxOccupancy": 148,
+      "littlesLawPrediction": 106.78,
+      "percentDiff": 12.84
+    },
+    {
+      "admissionRate": 35,
+      "avgOccupancy": 140.10,
+      "medianOccupancy": 140,
+      "p95Occupancy": 155,
+      "p99Occupancy": 160,
+      "maxOccupancy": 168,
+      "littlesLawPrediction": 124.58,
+      "percentDiff": 12.46
+    },
+    {
+      "admissionRate": 40,
+      "avgOccupancy": 161.29,
+      "medianOccupancy": 162,
+      "p95Occupancy": 176,
+      "p99Occupancy": 183,
+      "maxOccupancy": 197,
+      "littlesLawPrediction": 142.37,
+      "percentDiff": 13.29
+    },
+    {
+      "admissionRate": 45,
+      "avgOccupancy": 180.44,
+      "medianOccupancy": 180,
+      "p95Occupancy": 196,
+      "p99Occupancy": 204,
+      "maxOccupancy": 213,
+      "littlesLawPrediction": 160.17,
+      "percentDiff": 12.65
+    },
+    {
+      "admissionRate": 48,
+      "avgOccupancy": 191.49,
+      "medianOccupancy": 191,
+      "p95Occupancy": 207,
+      "p99Occupancy": 214,
+      "maxOccupancy": 221,
+      "littlesLawPrediction": 170.85,
+      "percentDiff": 12.09
+    },
+    {
+      "admissionRate": 50,
+      "avgOccupancy": 201.13,
+      "medianOccupancy": 201,
+      "p95Occupancy": 218,
+      "p99Occupancy": 226,
+      "maxOccupancy": 236,
+      "littlesLawPrediction": 177.97,
+      "percentDiff": 13.02
+    }
+  ],
+  "deterministicResults": [
+    {
+      "admissionRate": 10,
+      "deterministic": 36,
+      "bedsFor95Occupancy": 38,
+      "bedsFor90Occupancy": 40,
+      "bedsFor85Occupancy": 42,
+      "bedsFor80Occupancy": 45
+    },
+    {
+      "admissionRate": 15,
+      "deterministic": 54,
+      "bedsFor95Occupancy": 56,
+      "bedsFor90Occupancy": 59,
+      "bedsFor85Occupancy": 63,
+      "bedsFor80Occupancy": 67
+    },
+    {
+      "admissionRate": 20,
+      "deterministic": 71,
+      "bedsFor95Occupancy": 75,
+      "bedsFor90Occupancy": 79,
+      "bedsFor85Occupancy": 84,
+      "bedsFor80Occupancy": 89
+    },
+    {
+      "admissionRate": 25,
+      "deterministic": 89,
+      "bedsFor95Occupancy": 94,
+      "bedsFor90Occupancy": 99,
+      "bedsFor85Occupancy": 105,
+      "bedsFor80Occupancy": 111
+    },
+    {
+      "admissionRate": 30,
+      "deterministic": 107,
+      "bedsFor95Occupancy": 112,
+      "bedsFor90Occupancy": 118,
+      "bedsFor85Occupancy": 125,
+      "bedsFor80Occupancy": 133
+    },
+    {
+      "admissionRate": 35,
+      "deterministic": 124,
+      "bedsFor95Occupancy": 131,
+      "bedsFor90Occupancy": 138,
+      "bedsFor85Occupancy": 146,
+      "bedsFor80Occupancy": 155
+    },
+    {
+      "admissionRate": 40,
+      "deterministic": 142,
+      "bedsFor95Occupancy": 149,
+      "bedsFor90Occupancy": 158,
+      "bedsFor85Occupancy": 167,
+      "bedsFor80Occupancy": 177
+    },
+    {
+      "admissionRate": 45,
+      "deterministic": 160,
+      "bedsFor95Occupancy": 168,
+      "bedsFor90Occupancy": 177,
+      "bedsFor85Occupancy": 188,
+      "bedsFor80Occupancy": 200
+    },
+    {
+      "admissionRate": 48,
+      "deterministic": 170,
+      "bedsFor95Occupancy": 179,
+      "bedsFor90Occupancy": 189,
+      "bedsFor85Occupancy": 200,
+      "bedsFor80Occupancy": 213
+    },
+    {
+      "admissionRate": 50,
+      "deterministic": 178,
+      "bedsFor95Occupancy": 187,
+      "bedsFor90Occupancy": 197,
+      "bedsFor85Occupancy": 209,
+      "bedsFor80Occupancy": 222
+    }
+  ],
+  "losSensitivity": {
+    "admissions40": [
+      {
+        "losMultiplier": "0.7",
+        "losValue": "2.48",
+        "deterministicBeds": 100,
+        "bedsFor95Percentile": 105
+      },
+      {
+        "losMultiplier": "0.8",
+        "losValue": "2.83",
+        "deterministicBeds": 114,
+        "bedsFor95Percentile": 120
+      },
+      {
+        "losMultiplier": "0.9",
+        "losValue": "3.18",
+        "deterministicBeds": 128,
+        "bedsFor95Percentile": 135
+      },
+      {
+        "losMultiplier": "1.0",
+        "losValue": "3.54",
+        "deterministicBeds": 142,
+        "bedsFor95Percentile": 149
+      },
+      {
+        "losMultiplier": "1.1",
+        "losValue": "3.89",
+        "deterministicBeds": 156,
+        "bedsFor95Percentile": 164
+      },
+      {
+        "losMultiplier": "1.2",
+        "losValue": "4.25",
+        "deterministicBeds": 170,
+        "bedsFor95Percentile": 179
+      },
+      {
+        "losMultiplier": "1.3",
+        "losValue": "4.60",
+        "deterministicBeds": 184,
+        "bedsFor95Percentile": 194
+      }
+    ],
+    "admissions48": [
+      {
+        "losMultiplier": "0.7",
+        "losValue": "2.48",
+        "deterministicBeds": 119,
+        "bedsFor95Percentile": 126
+      },
+      {
+        "losMultiplier": "0.8",
+        "losValue": "2.83",
+        "deterministicBeds": 136,
+        "bedsFor95Percentile": 144
+      },
+      {
+        "losMultiplier": "0.9",
+        "losValue": "3.18",
+        "deterministicBeds": 153,
+        "bedsFor95Percentile": 161
+      },
+      {
+        "losMultiplier": "1.0",
+        "losValue": "3.54",
+        "deterministicBeds": 170,
+        "bedsFor95Percentile": 179
+      },
+      {
+        "losMultiplier": "1.1",
+        "losValue": "3.89",
+        "deterministicBeds": 187,
+        "bedsFor95Percentile": 197
+      },
+      {
+        "losMultiplier": "1.2",
+        "losValue": "4.25",
+        "deterministicBeds": 204,
+        "bedsFor95Percentile": 215
+      },
+      {
+        "losMultiplier": "1.3",
+        "losValue": "4.60",
+        "deterministicBeds": 221,
+        "bedsFor95Percentile": 233
+      }
+    ]
+  },
+  "occupancySensitivity": {
+    "occupancyTargets": [
+      {
+        "occupancyTarget": 70,
+        "beds40": 203,
+        "beds48": 243
+      },
+      {
+        "occupancyTarget": 75,
+        "beds40": 189,
+        "beds48": 227
+      },
+      {
+        "occupancyTarget": 80,
+        "beds40": 177,
+        "beds48": 213
+      },
+      {
+        "occupancyTarget": 85,
+        "beds40": 167,
+        "beds48": 200
+      },
+      {
+        "occupancyTarget": 90,
+        "beds40": 158,
+        "beds48": 189
+      },
+      {
+        "occupancyTarget": 95,
+        "beds40": 149,
+        "beds48": 179
+      },
+      {
+        "occupancyTarget": 97,
+        "beds40": 146,
+        "beds48": 176
+      },
+      {
+        "occupancyTarget": 99,
+        "beds40": 143,
+        "beds48": 172
+      }
+    ]
+  },
+  "distributionData": {
+    "admissions40": [
+      {"occupancy": 120, "frequency": 0.1},
+      {"occupancy": 125, "frequency": 0.3},
+      {"occupancy": 130, "frequency": 0.8},
+      {"occupancy": 135, "frequency": 1.5},
+      {"occupancy": 140, "frequency": 2.8},
+      {"occupancy": 145, "frequency": 4.2},
+      {"occupancy": 150, "frequency": 5.8},
+      {"occupancy": 155, "frequency": 7.1},
+      {"occupancy": 160, "frequency": 8.2},
+      {"occupancy": 165, "frequency": 8.8},
+      {"occupancy": 170, "frequency": 8.5},
+      {"occupancy": 175, "frequency": 7.6},
+      {"occupancy": 180, "frequency": 6.2},
+      {"occupancy": 185, "frequency": 4.5},
+      {"occupancy": 190, "frequency": 2.8},
+      {"occupancy": 195, "frequency": 1.5},
+      {"occupancy": 200, "frequency": 0.6}
+    ],
+    "admissions48": [
+      {"occupancy": 150, "frequency": 0.1},
+      {"occupancy": 155, "frequency": 0.3},
+      {"occupancy": 160, "frequency": 0.8},
+      {"occupancy": 165, "frequency": 1.5},
+      {"occupancy": 170, "frequency": 2.8},
+      {"occupancy": 175, "frequency": 4.2},
+      {"occupancy": 180, "frequency": 5.8},
+      {"occupancy": 185, "frequency": 7.1},
+      {"occupancy": 190, "frequency": 8.2},
+      {"occupancy": 195, "frequency": 8.8},
+      {"occupancy": 200, "frequency": 8.5},
+      {"occupancy": 205, "frequency": 7.6},
+      {"occupancy": 210, "frequency": 6.2},
+      {"occupancy": 215, "frequency": 4.5},
+      {"occupancy": 220, "frequency": 2.8},
+      {"occupancy": 225, "frequency": 1.5},
+      {"occupancy": 230, "frequency": 0.6}
+    ]
+  },
+  "validation": {
+    "avgDeviation": "12.7",
+    "correlationP95": "0.9999",
+    "correlationP99": "0.9998",
+    "littlesLawComparison": [
+      {
+        "admissionRate": 10,
+        "avgSimulated": 40.16,
+        "littlesLaw": 35.59,
+        "percentDiff": 12.83
+      },
+      {
+        "admissionRate": 15,
+        "avgSimulated": 60.28,
+        "littlesLaw": 53.39,
+        "percentDiff": 12.91
+      },
+      {
+        "admissionRate": 20,
+        "avgSimulated": 80.88,
+        "littlesLaw": 71.19,
+        "percentDiff": 13.62
+      },
+      {
+        "admissionRate": 25,
+        "avgSimulated": 99.77,
+        "littlesLaw": 88.98,
+        "percentDiff": 12.12
+      },
+      {
+        "admissionRate": 30,
+        "avgSimulated": 120.49,
+        "littlesLaw": 106.78,
+        "percentDiff": 12.84
+      },
+      {
+        "admissionRate": 35,
+        "avgSimulated": 140.10,
+        "littlesLaw": 124.58,
+        "percentDiff": 12.46
+      },
+      {
+        "admissionRate": 40,
+        "avgSimulated": 161.29,
+        "littlesLaw": 142.37,
+        "percentDiff": 13.29
+      },
+      {
+        "admissionRate": 45,
+        "avgSimulated": 180.44,
+        "littlesLaw": 160.17,
+        "percentDiff": 12.65
+      },
+      {
+        "admissionRate": 48,
+        "avgSimulated": 191.49,
+        "littlesLaw": 170.85,
+        "percentDiff": 12.09
+      },
+      {
+        "admissionRate": 50,
+        "avgSimulated": 201.13,
+        "littlesLaw": 177.97,
+        "percentDiff": 13.02
+      }
+    ]
+  },
+  "metadata": {
+    "simulationParameters": {
+      "meanLOS": 3.56,
+      "medianLOS": 2.97,
+      "simulationDays": 365,
+      "warmupDays": 100,
+      "admissionModel": "Quasi-Poisson with daily variation",
+      "losModel": "Empirical distribution sampling"
+    },
+    "analysisDate": "2025-01-26",
+    "dataSource": "Monte Carlo Simulation Analysis",
+    "version": "2.0"
+  }
+}
