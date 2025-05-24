@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Bed Capacity Planning Dashboard | Monte Carlo Simulation Analysis</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background-color: #ffffff;
+      padding: 20px 0;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 500;
+      color: #444;
+    }
+    
+    .nav-tabs {
+      margin-bottom: 30px;
+      justify-content: flex-start;
+      border-bottom: 1px solid #dee2e6;
+    }
+    
+    .nav-tabs .nav-link {
+      border-radius: 0;
+      padding: 12px 20px;
+      font-weight: 500;
+      color: #495057;
+      margin-right: 0;
+      background-color: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .nav-tabs .nav-link.active {
+      background-color: transparent;
+      color: #3f51b5;
+      border-bottom: 3px solid #3f51b5;
+    }
+    
+    .tab-content {
+      padding: 20px 0;
+    }
+    
+    .chart-container {
+      width: 100%;
+      height: 400px;
+      position: relative;
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      margin-bottom: 20px;
+      font-weight: 500;
+      color: #333;
+      font-size: 1.8rem;
+    }
+    
+    .subsection-title {
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-weight: 500;
+      color: #333;
+      font-size: 1.5rem;
+    }
+    
+    table {
+      width: 100%;
+      margin-bottom: 30px;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+    }
+    
+    th {
+      background-color: #f8f9fa;
+      font-weight: 500;
+    }
+    
+    ul {
+      padding-left: 20px;
+    }
+    
+    li {
+      margin-bottom: 12px;
+    }
+    
+    #loadingSpinner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    
+    .metric-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .metric-card h3 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    
+    .metric-card p {
+      margin: 5px 0 0 0;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    
+    .interpretation-panel {
+      background-color: #f9f9f9;
+      border-left: 4px solid #3f51b5;
+      padding: 20px;
+      margin: 20px 0 30px 0;
+    }
+    
+    .interpretation-panel p {
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+    
+    .key-observations {
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+    }
+    
+    .alert-warning {
+      background-color: #fff3cd;
+      border-color: #ffecb5;
+      color: #664d03;
+    }
+    
+    .alert-info {
+      background-color: #d1ecf1;
+      border-color: #bee5eb;
+      color: #0c5460;
+    }
+    
+    .alert-success {
+      background-color: #d1e7dd;
+      border-color: #badbcc;
+      color: #0f5132;
+    }
+    
+    .parameter-controls {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    
+    .parameter-controls .form-select {
+      margin-bottom: 15px;
+    }
+    
+    footer {
+      margin-top: 40px;
+      color: #777;
+      text-align: center;
+      font-size: 0.9rem;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    
+    .distribution-container {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #capacityTooltip {
+      position: absolute;
+      display: none;
+      background: white;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      pointer-events: none;
+      z-index: 100;
+    }
+    
+    .vertical-line {
+      position: absolute;
+      width: 1px;
+      background-color: rgba(0,0,0,0.5);
+      display: none;
+      pointer-events: none;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body>
+  <div id="loadingSpinner">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Hospital Bed Capacity Planning Dashboard | Monte Carlo Simulation Analysis</h1>
+    
+    <ul class="nav nav-tabs" id="analysisTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">Overview</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="comparison-tab" data-bs-toggle="tab" data-bs-target="#comparison" type="button" role="tab" aria-controls="comparison" aria-selected="false">Deterministic vs Stochastic</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="sensitivity-tab" data-bs-toggle="tab" data-bs-target="#sensitivity" type="button" role="tab" aria-controls="sensitivity" aria-selected="false">Sensitivity Analysis</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="capacity-tab" data-bs-toggle="tab" data-bs-target="#capacity" type="button" role="tab" aria-controls="capacity" aria-selected="false">Capacity Planning</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="validation-tab" data-bs-toggle="tab" data-bs-target="#validation" type="button" role="tab" aria-controls="validation" aria-selected="false">Model Validation</button>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="analysisTabContent">
+      <!-- Overview Tab -->
+      <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+        <h2 class="section-title">Executive Summary</h2>
+        
+        <div class="row" id="keyMetricsRow">
+          <!-- Dynamic metric cards will be inserted here -->
+        </div>
+        
+        <div class="interpretation-panel">
+          <h3 class="subsection-title">Key Findings</h3>
+          <p id="executiveSummary">Monte Carlo simulation analysis reveals significant differences between deterministic and stochastic approaches to hospital bed capacity planning. The simulation incorporates empirical length of stay data and variable admission patterns to provide more accurate capacity estimates.</p>
+        </div>
+        
+        <h3 class="subsection-title">Bed Requirements by Admission Rate</h3>
+        <div class="chart-container">
+          <canvas id="overviewChart"></canvas>
+        </div>
+        
+        <div class="parameter-controls">
+          <h4>Interactive Analysis</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="admissionRateSelect" class="form-label">Select Admission Rate:</label>
+              <select class="form-select" id="admissionRateSelect">
+                <option value="10">10 admissions/day</option>
+                <option value="15">15 admissions/day</option>
+                <option value="20">20 admissions/day</option>
+                <option value="25">25 admissions/day</option>
+                <option value="30">30 admissions/day</option>
+                <option value="35">35 admissions/day</option>
+                <option value="40" selected>40 admissions/day</option>
+                <option value="45">45 admissions/day</option>
+                <option value="48">48 admissions/day</option>
+                <option value="50">50 admissions/day</option>
+              </select>
+            </div>
+          </div>
+          <div id="selectedRateDetails" class="mt-3">
+            <!-- Dynamic details will be inserted here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Deterministic vs Stochastic Tab -->
+      <div class="tab-pane fade" id="comparison" role="tabpanel" aria-labelledby="comparison-tab">
+        <h2 class="section-title">Deterministic vs Stochastic Approach Comparison</h2>
+        
+        <div class="alert alert-info">
+          <strong>Methodology Comparison:</strong> This analysis compares traditional deterministic capacity planning (Little's Law and occupancy targets) with Monte Carlo simulation that accounts for daily variability in admissions and length of stay.
+        </div>
+        
+        <h3 class="subsection-title">Capacity Requirements Across Methods</h3>
+        <div class="chart-container">
+          <canvas id="comparisonChart"></canvas>
+        </div>
+        
+        <h3 class="subsection-title">Method Comparison Table</h3>
+        <div class="table-responsive">
+          <table class="table table-striped" id="comparisonTable">
+            <thead>
+              <tr>
+                <th>Admission Rate</th>
+                <th>Little's Law</th>
+                <th>95% Occupancy Target</th>
+                <th>Monte Carlo Average</th>
+                <th>Monte Carlo 95th %ile</th>
+                <th>Monte Carlo 99th %ile</th>
+                <th>Underestimation (95th %ile)</th>
+              </tr>
+            </thead>
+            <tbody id="comparisonTableBody">
+              <!-- Dynamic content will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="key-observations">
+          <h4>Key Observations:</h4>
+          <ul id="comparisonObservations">
+            <!-- Dynamic observations will be inserted here -->
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Sensitivity Analysis Tab -->
+      <div class="tab-pane fade" id="sensitivity" role="tabpanel" aria-labelledby="sensitivity-tab">
+        <h2 class="section-title">Sensitivity Analysis</h2>
+        
+        <h3 class="subsection-title">Length of Stay Sensitivity</h3>
+        <div class="chart-container">
+          <canvas id="losSensitivityChart"></canvas>
+        </div>
+        
+        <h3 class="subsection-title">Occupancy Rate Sensitivity</h3>
+        <div class="chart-container">
+          <canvas id="occupancySensitivityChart"></canvas>
+        </div>
+        
+        <div class="parameter-controls">
+          <h4>Sensitivity Analysis Parameters</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="sensitivityAdmissionRate" class="form-label">Focus Admission Rate:</label>
+              <select class="form-select" id="sensitivityAdmissionRate">
+                <option value="40" selected>40 admissions/day</option>
+                <option value="48">48 admissions/day</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div class="alert alert-warning mt-3">
+          <strong>Planning Implication:</strong> Small changes in length of stay have significant impacts on bed requirements. A 10% reduction in average LOS can reduce bed needs by 10-15 beds for high-volume scenarios.
+        </div>
+      </div>
+      
+      <!-- Capacity Planning Tab -->
+      <div class="tab-pane fade" id="capacity" role="tabpanel" aria-labelledby="capacity-tab">
+        <h2 class="section-title">Capacity Planning Recommendations</h2>
+        
+        <h3 class="subsection-title">Bed Occupancy Distribution</h3>
+        <div class="chart-container distribution-container">
+          <canvas id="distributionChart"></canvas>
+          <div id="capacityTooltip"></div>
+          <div class="vertical-line" id="capacityVerticalLine"></div>
+        </div>
+        
+        <h3 class="subsection-title">Service Level Analysis</h3>
+        <div class="chart-container">
+          <canvas id="serviceLevelChart"></canvas>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="alert alert-success">
+              <h5>Recommended Capacity (40 admissions/day)</h5>
+              <ul id="recommendations40">
+                <!-- Dynamic recommendations will be inserted here -->
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="alert alert-success">
+              <h5>Recommended Capacity (48 admissions/day)</h5>
+              <ul id="recommendations48">
+                <!-- Dynamic recommendations will be inserted here -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Model Validation Tab -->
+      <div class="tab-pane fade" id="validation" role="tabpanel" aria-labelledby="validation-tab">
+        <h2 class="section-title">Monte Carlo Model Validation</h2>
+        
+        <h3 class="subsection-title">Little's Law Validation</h3>
+        <div class="chart-container">
+          <canvas id="validationChart"></canvas>
+        </div>
+        
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="table-light">
+                <th>Validation Metric</th>
+                <th>Result</th>
+                <th>Interpretation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fw-bold">Average Deviation from Little's Law</td>
+                <td id="avgDeviation">12.7%</td>
+                <td>Consistent overestimation due to variability effects</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Correlation Coefficient (Admission Rate vs P95)</td>
+                <td id="correlationP95">0.9999</td>
+                <td>Near-perfect linear relationship</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Correlation Coefficient (Admission Rate vs P99)</td>
+                <td id="correlationP99">0.9998</td>
+                <td>Near-perfect linear relationship</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="interpretation-panel">
+          <h3 class="subsection-title">Model Validation Summary</h3>
+          <p>The Monte Carlo simulation demonstrates excellent validation characteristics:</p>
+          <ul>
+            <li><strong>Consistent Relationship to Theory:</strong> The simulation results show a consistent 12-13% elevation above Little's Law predictions, reflecting the additional capacity needed to handle variability.</li>
+            <li><strong>Linear Scaling:</strong> Both 95th and 99th percentile requirements scale linearly with admission rates (correlation > 0.999), confirming model reliability across different scenarios.</li>
+            <li><strong>Empirical Distribution Preservation:</strong> The model successfully preserves the characteristics of the original length of stay distribution through direct sampling.</li>
+          </ul>
+        </div>
+        
+        <h3 class="subsection-title">Simulation Parameters</h3>
+        <div class="key-observations">
+          <h4>Model Specifications:</h4>
+          <ul>
+            <li><strong>Simulation Period:</strong> 365 days of operation plus 100-day warm-up period</li>
+            <li><strong>Admission Model:</strong> Quasi-Poisson process with daily variation</li>
+            <li><strong>Length of Stay:</strong> Direct sampling from empirical distribution (Mean: 3.56 days)</li>
+            <li><strong>Initial Population:</strong> Steady-state initialization to eliminate transient effects</li>
+            <li><strong>Iterations:</strong> Multiple simulation runs for statistical reliability</li>
+          </ul>
+        </div>
+        
+        <h3 class="subsection-title">Conclusions and Recommendations</h3>
+        <div class="alert alert-info">
+          <p><strong>Strategic Planning Implications:</strong></p>
+          <ul>
+            <li>Deterministic methods consistently underestimate bed requirements by 15-30 beds for high-volume scenarios</li>
+            <li>Planning for 95th percentile demand provides appropriate service levels while maintaining reasonable occupancy rates</li>
+            <li>Length of stay reduction initiatives have significant impact on capacity requirements</li>
+            <li>The Monte Carlo approach provides more reliable estimates for complex operational environments</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p>Hospital Bed Capacity Planning Dashboard | Monte Carlo Simulation Analysis | Healthcare Analytics</p>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
