@@ -80,7 +80,7 @@ function createKeyMetricsCards(data) {
     },
     {
       title: '12.7%',
-      subtitle: 'Average deviation from Little\'s Law',
+      subtitle: 'M.A.R.C.U.S. deviation from Little\'s Law',
       color: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
     }
   ];
