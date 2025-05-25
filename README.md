@@ -232,7 +232,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For questions, issues, or suggestions:
 - Open an issue in the GitHub repository
-- Contact: [Your Email/Organization]
+- Contact: [dcicantab5@icloud.com]
 
 ## 🎯 Roadmap
 
