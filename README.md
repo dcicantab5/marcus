@@ -1,4 +1,4 @@
-# M.A.R.C.U.S. | Monte Carlo Resource and Capacity Utilization System
+# M.A.R.C.U.S. | Monte Carlo Resource and Capacity Utilisation System
 
 ## Hospital Bed Capacity Planning Dashboard
 
@@ -6,7 +6,7 @@ A comprehensive Monte Carlo simulation-based dashboard for hospital bed capacity
 
 ## 🏥 Overview
 
-**M.A.R.C.U.S.** (Monte Carlo Resource and Capacity Utilization System) analyzes hospital bed requirements using Monte Carlo simulation, incorporating empirical length of stay (LOS) data and variable admission patterns. It provides healthcare administrators and planners with data-driven insights for optimal bed capacity planning.
+**M.A.R.C.U.S.** (Monte Carlo Resource and Capacity Utilisation System) analyzes hospital bed requirements using Monte Carlo simulation, incorporating empirical length of stay (LOS) data and variable admission patterns. It provides healthcare administrators and planners with data-driven insights for optimal bed capacity planning.
 
 ## 📊 Key Features
 
@@ -90,7 +90,7 @@ npx http-server
 ### **Frontend Technologies**
 - **HTML5** with semantic structure and accessibility features
 - **Bootstrap 5.3.0** for responsive UI components
-- **Chart.js 3.9.1** for professional data visualizations
+- **Chart.js 3.9.1** for professional data visualisations
 - **Vanilla JavaScript** for optimal performance
 
 ### **Data Structure**
@@ -113,7 +113,7 @@ The `data.json` file contains:
 ### **1. Overview Tab**
 - Executive summary with key capacity metrics
 - Interactive admission rate selector
-- Comprehensive bed requirements visualization
+- Comprehensive bed requirements visualisation
 - Real-time planning implications
 
 ### **2. Deterministic vs Stochastic Tab**
@@ -123,7 +123,7 @@ The `data.json` file contains:
 - Key observations and recommendations
 
 ### **3. Sensitivity Analysis Tab**
-- Length of stay impact visualization
+- Length of stay impact visualisation
 - Occupancy rate sensitivity charts
 - Interactive parameter selection
 - Planning strategy implications
@@ -145,12 +145,12 @@ The `data.json` file contains:
 ### **Healthcare Administrators**
 - Strategic bed capacity planning
 - Budget allocation for facility expansion
-- Service level optimization
+- Service level optimisation
 - Risk management and contingency planning
 
 ### **Hospital Operations**
 - Daily capacity management
-- Admission scheduling optimization
+- Admission scheduling optimisation
 - Resource allocation planning
 - Performance monitoring
 
@@ -244,4 +244,4 @@ For questions, issues, or suggestions:
 
 ---
 
-**M.A.R.C.U.S.** | Monte Carlo Resource and Capacity Utilization System | Saiful Safuan Md Sani
+**M.A.R.C.U.S.** | Monte Carlo Resource and Capacity Utilisation System | Saiful Safuan Md Sani
