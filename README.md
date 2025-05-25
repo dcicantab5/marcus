@@ -6,7 +6,7 @@ A comprehensive Monte Carlo simulation-based dashboard for hospital bed capacity
 
 ## 🏥 Overview
 
-**M.A.R.C.U.S.** (Monte Carlo Resource and Capacity Utilisation System) analyzes hospital bed requirements using Monte Carlo simulation, incorporating empirical length of stay (LOS) data and variable admission patterns. It provides healthcare administrators and planners with data-driven insights for optimal bed capacity planning.
+**M.A.R.C.U.S.** (Monte Carlo Resource and Capacity Utilisation System) analyses hospital bed requirements using Monte Carlo simulation, incorporating empirical length of stay (LOS) data and variable admission patterns. It provides healthcare administrators and planners with data-driven insights for optimal bed capacity planning.
 
 ## 📊 Key Features
 
