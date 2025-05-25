@@ -1,10 +1,12 @@
-# Hospital Bed Capacity Planning Dashboard
+# M.A.R.C.U.S. | Monte Carlo Resource and Capacity Utilization System
+
+## Hospital Bed Capacity Planning Dashboard
 
 A comprehensive Monte Carlo simulation-based dashboard for hospital bed capacity planning, comparing deterministic and stochastic approaches to provide more accurate capacity estimates.
 
 ## 🏥 Overview
 
-This dashboard analyzes hospital bed requirements using Monte Carlo simulation, incorporating empirical length of stay (LOS) data and variable admission patterns. It provides healthcare administrators and planners with data-driven insights for optimal bed capacity planning.
+**M.A.R.C.U.S.** (Monte Carlo Resource and Capacity Utilization System) analyzes hospital bed requirements using Monte Carlo simulation, incorporating empirical length of stay (LOS) data and variable admission patterns. It provides healthcare administrators and planners with data-driven insights for optimal bed capacity planning.
 
 ## 📊 Key Features
 
@@ -69,11 +71,11 @@ npx http-server
 # Then navigate to: http://localhost:8000
 ```
 
-## 📈 Monte Carlo Simulation Results
+## 📈 M.A.R.C.U.S. Simulation Results
 
 ### **Key Findings**
-- **40 admissions/day**: Requires **176 beds** for 95% service level
-- **48 admissions/day**: Requires **207 beds** for 95% service level
+- **40 admissions/day**: M.A.R.C.U.S. recommends **176 beds** for 95% service level
+- **48 admissions/day**: M.A.R.C.U.S. recommends **207 beds** for 95% service level
 - **Deterministic underestimation**: 27-28 beds for high-volume scenarios
 - **Average deviation from Little's Law**: 12.7% (consistent across admission rates)
 
@@ -100,7 +102,7 @@ The `data.json` file contains:
 - **distributionData**: Bed occupancy probability distributions
 - **validation**: Model validation metrics and comparisons
 
-### **Simulation Methodology**
+### **M.A.R.C.U.S. Simulation Methodology**
 - **365-day simulation** with 100-day warm-up period
 - **Empirical LOS sampling** preserves distribution characteristics
 - **Quasi-Poisson admissions**: `admissions = round(rate + sqrt(rate) * randomFactor)`
@@ -242,4 +244,4 @@ For questions, issues, or suggestions:
 
 ---
 
-**Hospital Bed Capacity Planning Dashboard** | Monte Carlo Simulation Analysis | Healthcare Analytics
+**M.A.R.C.U.S.** | Monte Carlo Resource and Capacity Utilization System | Saiful Safuan Md Sani
